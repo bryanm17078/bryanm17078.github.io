@@ -1,0 +1,70 @@
+---
+title: "Quantitative phosphoproteomics Analysis"
+---
+
+<font size="3">
+
+<img src="pw_images/pa/paimg.JPG" alt="codes on a computer">  
+
+
+This was an academic group project in which we had to create a biological web application that provided information about all known human kinases (e.g. their name and gene symbol, the families they belong to, where in the cell they are typically found, and the sites they are known to phosphorylate), information about phosphosites (in terms of their genomic location, neighbouring sequence, etc.),   
+information about all known inhibitors of human protein kinases(e.g. their name, chemical structure, and which kinases they are known to inhibit).And finally allow user to upload quantitative phosphoproteomics data and then summarise this data  graphically and provide an estimate of the relative activity of every human kinase in the sample represented by the data.
+
+My role in the project was allow the user to upload their data and graphically summarize their data.  
+<img src="pw_images/pa/az20.JPG" alt="az20 text file">  
+
+
+# Tools and environment
+
+* python 2.7
+* numpy 
+* pandas 
+* matplotlib
+* math
+* six
+
+From the briefing there were two Parts:  
+* The graphical summary of the data
+* Calculation of the relative activity
+
+# Graphical summary
+
+Used a variety of methods (e.g. boxplot, histogram) to try to summarise the data. Then I decided to do a volcano plot of the substrates. Since we were only interested in significant substrates. So, I extracted any significantly expressed substrates (p <0.05)
+Plotted the volcano plot using the p value and log2 fold change. Then I coloured significantly upregulated substrates (P < 0.05) green and significantly downregulated substrates (P< 0.05) red.  
+
+<img src="pw_images/pa/volcanop.JPG" alt="volcanop">  
+
+# Kinase activity
+
+ We needed a way to calculate the relative activity using only the data we’ve been given.
+From our research we found a paper which described a method to calculate the relative activity of each kinase using the fold change.
+
+<img src="pw_images/pa/kinaseseq.JPG" alt="Kinase score equation">  
+<img src="pw_images/pa/kinasedict.JPG" alt="dictionary of kinare values">    
+<img src="pw_images/pa/kscoreplot.JPG" alt="kinase score plot">   
+
+# Link to the project
+<a href='https://github.com/bryanm17078/Group-Project/blob/master/Proteomics%20Calculations%20Final.ipynb'style="color:black;"><button class="btn default">Group project</button></a>  
+
+
+</font>
+
+
+<style>
+.footer {
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  color: black;
+  text-align: center;
+  padding: 15px;
+}
+</style>
+
+<div class="footer">
+ <a href="contact.html" style="color:black;" class="fa fa-envelope fa-fw fa-2x"></a>
+ <a href="https://github.com/bryanm17078" style="color:black;" class="fa fa-github fa-fw fa-2x"></a>
+ <a href="https://www.linkedin.com/in/bryanmensah"style="color:black;" class="fa fa-linkedin fa-fw fa-2x"></a>
+ <a href="D:/Bryan Mensah CV.pdf"style="color:black;" class="fa fa-file fa-fw fa-2x"></a>
+ <p>Copyright © Bryan Mensah</p>
+</div>
