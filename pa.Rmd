@@ -41,7 +41,7 @@ From our research we found a paper which described a method to calculate the rel
 
 <img src="pw_images/pa/kinaseseq.JPG" alt="Kinase score equation">  
 <img src="pw_images/pa/kinasedict.JPG" alt="dictionary of kinare values">    
-<img src="pw_images/pa/kscoreplot.JPG" alt="kinase score plot">   
+<img src="pw_images/pa/kscoreplot.jpg" alt="kinase score plot">   
 
 # Link to the project
 <a href='https://github.com/bryanm17078/Group-Project/blob/master/Proteomics%20Calculations%20Final.ipynb'style="color:black;"><button class="btn default">Group project</button></a>  
