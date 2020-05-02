@@ -1,0 +1,62 @@
+---
+title: "Master Thesis"
+---
+
+<font size="3">
+
+<img src="pw_images/mscthesis/massspec.JPG" alt="mass spectrometry">  
+
+The Thesis which I submitted for my masters.
+The aims of my thesis were to:
+
+* Investigate the structural characteristics of peptide in relation to flyability 
+* Create a predictor of flyability of peptides prior to proteomic experiments
+
+
+The progression of mass spectrometry has allowed a deeper understanding of the proteome. However, the detection of every peptide in the sample remains a prevalent issue. From numerous papers it was deduced that the detectability of the peptide was linked to certain structural properties. In my dissertation the relationship between post translational modifications and peptide detectability was explored. The modified residues were mapped to peptides sequences derived from yeast and examined using statistical methods to determine if there was a relationship between peptide detectability and post translational modifications. Based on the data analysed there is no relationship between peptide detectability and post translational modifications.
+
+<img src="pw_images/mscthesis/flyers.JPG" alt="flyers">  
+<img src="pw_images/mscthesis/nonflyers.JPG" alt="non flyers">   
+<img src="pw_images/mscthesis/process.JPG" alt="image of method"> 
+
+
+
+# Tools and environment
+* Python 2.7
+* Numpy
+* csv
+* re
+* Matplotlib
+* json
+* scipy
+
+# Result
+<img src="pw_images/mscthesis/ptmgraph.JPG" alt="ptm graph">   
+
+
+# Link to my project  
+If you would like to know more about my project click on the link or you can contact me [here](contact.html) <br>   
+<a href='https://github.com/bryanm17078/MSc-Thesis/blob/master/MSc%20Dissertation.ipynb'style="color:black;"><button class="btn default">Master thesis</button></a>  
+
+</font>
+
+
+
+<style>
+.footer {
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  color: black;
+  text-align: center;
+  padding: 15px;
+}
+</style>
+
+<div class="footer">
+ <a href="contact.html" style="color:black;" class="fa fa-envelope fa-fw fa-2x"></a>
+ <a href="https://github.com/bryanm17078" style="color:black;" class="fa fa-github fa-fw fa-2x"></a>
+ <a href="https://www.linkedin.com/in/bryanmensah"style="color:black;" class="fa fa-linkedin fa-fw fa-2x"></a>
+ <a href="D:/Bryan Mensah CV.pdf"style="color:black;" class="fa fa-file fa-fw fa-2x"></a>
+ <p>Copyright © Bryan Mensah</p>
+</div>
