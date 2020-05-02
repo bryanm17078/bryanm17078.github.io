@@ -370,11 +370,13 @@ $(document).ready(function () {
 </div>
 
 
-<p>This a personal project in which I create a recommender to recommend show and movies to watch based on the similarity to the movies and tv shows I have selected.<br />
+<p>This a personal project in which I create a recommender to recommend netflix tv shows and movies to watch based on the similarity to the movies and tv shows I have selected.<br />
 <font size="3"><br />
 <img src="pw_images/recs/title.jpg" alt="netflix tv screen"></p>
-<p>Unfortunately, the world in currently in the midst of a global pandemic and here in the UK we are currently in a lockdown where we have to stay indoor unless necessary. During this time, I have made a positive out of a negative and I have furthered my skills, but I have also relaxed a bit. One way I have done so it by watching tv and movies. But personally, I find it hard to find and start new tv show and movie because there is so much to watch and I don’t want to spend all day searching for a new series or movie. So, with that in mind I decided to make the process easier with a recommender system.</p>
-<p>What is a recommender system? Recommender system are software tools and techniques that provide recommendations or suggestion for items that they thinking the user will want or be useful to them <span class="math inline">\([1]\)</span>. There are various example of recommender systems that are used in the real world e.g. Amazon, YouTube, Spotify. Recommender system mainly use two approaches: Collaborative and content-based filtering. Collaborative based filtering uses a database about user preferences to predict additional topics or products a new user might like based on user with similar preferences to them <span class="math inline">\([2]\)</span>. Content based filtering looks as the content of the item and recommend items which have similar contents. I decided to go with content based over collaborative because the collaborative filtering assumes that the item which the user is interested wont change or vary which is unlikely as people grow and sometime have different interests. Where the content of the item won’t change over the time in my case with tv show and movies. With the background we can begin the building of the recommender.</p>
+<p>Unfortunately, the world in currently in the midst of a global pandemic and here in the UK we are currently in a lockdown where we have to stay indoor and avoid going outside unless necessary. During this time, I decided to make a positive out of a negative and I have furthered my skills, but I have also relaxed a bit. One way I have done so is by watching tv shows and movies. But personally, I find it hard to find and start new tv shows and movies because there is so much to watch and I don’t want to spend all day searching for a new series or movie. So, with that in mind I decided to make the process easier with a recommender system.</p>
+
+<h1> What is a recommender system? </h1>
+<p> Recommender system are software tools and techniques that provide recommendations or suggestion for items that they thinking the user will want or be useful to them <span class="math inline">\([1]\)</span>. There are various examples of recommender systems that are used in the real world e.g. Amazon, YouTube, Spotify. Recommender system mainly use two approaches: Collaborative and content-based filtering. Collaborative based filtering uses a database about user preferences to predict additional topics or products a new user might like based on user with similar preferences to them <span class="math inline">\([2]\)</span>. Content based filtering looks at the content of the item and recommend items which have similar contents. I decided to go with content based over collaborative because the collaborative filtering assumes that the user interests in the item they would be recommended wont change or vary. Which is unlikely as people grow and sometime have different interests. Whereas the content of the item won’t change over the time in my case with tv shows and movies. With the background we can begin the building of the recommender.</p>
 <div id="tools-and-environments" class="section level1">
 <h1>Tools and environments</h1>
 <ul>
@@ -390,15 +392,15 @@ $(document).ready(function () {
 <p><img src="pw_images/recs/recdf.JPG" alt="EDA of dataset"></p>
 </div>
 <div id="exploratory-data-analysis-eda" class="section level1">
-<h1>Exploratory Data analysis EDA</h1>
-<p>Performed some EDA on the data. Found that there were a lot more movies than TV Show which makes sense given their history and origins.<br />
+<h1>Exploratory Data analysis (EDA)</h1>
+<p>Performed some EDA on the data. Found that there were a lot more movies than tv show which makes sense given their history and origins.<br />
 <img src="pw_images/recs/receda.JPG" alt="EDA of dataset"></p>
 </div>
 <div id="preprocessing" class="section level1">
 <h1>Preprocessing</h1>
 <p>Pre-processing of the data include various techniques such as:</p>
 <ul>
-<li>punctation removal</li>
+<li>Punctation removal</li>
 <li>Stop word removal</li>
 <li>Lower casing of all words in the dataset</li>
 </ul>
@@ -410,13 +412,13 @@ $(document).ready(function () {
 <p><img src="pw_images/recs/recrk.JPG" alt="raking the dataset"></p>
 </div>
 <div id="tf-idf-and-cosine-similarity" class="section level1">
-<h1>TF-IDF and cosine similarity</h1>
-<p>It is a statistic that reflect how important the word is to the document <span class="math inline">\([3]\)</span>. The cosine similarity which looked at how similar two words are and is one of the most common methods when looking at text data.</p>
+<h1> Term frequency–inverse document frequency (tf–idf) and cosine similarity</h1>
+<p> tf–idf is a statistic that reflect how important the word is to the document <span class="math inline">\([3]\)</span>. The cosine similarity looked at how similar two words are and is one of the most common methods when looking at text data.</p>
 <p><img src="pw_images/recs/reccosim.JPG" alt="preprocessing of the dataset"></p>
 </div>
 <div id="recommender" class="section level1">
 <h1>Recommender</h1>
-<p>Here is some of the recommendation using some shows and movies that I have watched or am currently watching. As you can see there are recommendation are pretty similar in content but there are some unusual recommendations. But I have viewed some of the recommendation and am pleased to say that I was able to pick up some new shows and movies that I wouldn’t have otherwise found. So, the recommender can recommend shows and movies, but it is a bit of hit and miss with some recommendation it may be due to certain factors e.g. not too many similar shows/movie in the dataset so I would have to make more additions to more show that I enjoy. But it is useful and can be applied other industries.</p>
+<p>Here is some of the recommendation using some shows and movies that I have watched or am currently watching. As you can see there are recommendations are pretty similar in content but there are some unusual recommendations. But I have viewed some of the recommendations and am pleased to say that I was able to pick up some new shows and movies that I wouldn’t have otherwise found. So, the recommender can recommend tv shows and movies, but it is a bit of hit and miss with some recommendations it may be due to certain factors e.g. not too many similar shows/movie in the dataset or having similarities in unimportant features e.g same director but different genre and plot.so I would have to make more additions to get recommended more tv shows and movies that I might enjoy. But it is useful and can be applied other industries to make recommendation appropriate to that industry.</p>
 <p><img src="pw_images/recs/recnar.JPG" alt="recommender of tv show 1"></p>
 <p><img src="pw_images/recs/recac.JPG" alt="recommender of tv show 2"></p>
 <p><img src="pw_images/recs/recmov1.JPG" alt="recommender of movie 1"></p>
