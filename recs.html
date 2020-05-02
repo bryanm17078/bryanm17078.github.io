@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title>Netflix Recommender System</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Bryan Mensah</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="about.html">About Me</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Machine Learning
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="nlp.html">Sentiment Analysis</a>
+    </li>
+    <li>
+      <a href="recs.html">Recommender</a>
+    </li>
+    <li>
+      <a href="pokedex.html">Pokedex</a>
+    </li>
+    <li>
+      <a href="premier.html">Premier League</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Data Analysis
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="rs.html">R statistics</a>
+    </li>
+    <li>
+      <a href="pa.html">QPA</a>
+    </li>
+    <li>
+      <a href="msc.html">Master Thesis</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="contact.html">
+    <span class="fa fa-envelope fa-lg"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="https://github.com/bryanm17078">
+    <span class="fa fa-github fa-lg"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="https://www.linkedin.com/in/bryanmensah">
+    <span class="fa fa-linkedin fa-lg"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="D:/Bryan Mensah CV.pdf">
+    <span class="fa fa-file fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Netflix Recommender System</h1>
+
+</div>
+
+
+<p>This a personal project in which I create a recommender to recommend show and movies to watch based on the similarity to the movies and tv shows I have selected.<br />
+<font size="3"><br />
+<img src="pw_images/recs/title.jpg" alt="netflix tv screen"></p>
+<p>Unfortunately, the world in currently in the midst of a global pandemic and here in the UK we are currently in a lockdown where we have to stay indoor unless necessary. During this time, I have made a positive out of a negative and I have furthered my skills, but I have also relaxed a bit. One way I have done so it by watching tv and movies. But personally, I find it hard to find and start new tv show and movie because there is so much to watch and I don’t want to spend all day searching for a new series or movie. So, with that in mind I decided to make the process easier with a recommender system.</p>
+<p>What is a recommender system? Recommender system are software tools and techniques that provide recommendations or suggestion for items that they thinking the user will want or be useful to them <span class="math inline">\([1]\)</span>. There are various example of recommender systems that are used in the real world e.g. Amazon, YouTube, Spotify. Recommender system mainly use two approaches: Collaborative and content-based filtering. Collaborative based filtering uses a database about user preferences to predict additional topics or products a new user might like based on user with similar preferences to them <span class="math inline">\([2]\)</span>. Content based filtering looks as the content of the item and recommend items which have similar contents. I decided to go with content based over collaborative because the collaborative filtering assumes that the item which the user is interested wont change or vary which is unlikely as people grow and sometime have different interests. Where the content of the item won’t change over the time in my case with tv show and movies. With the background we can begin the building of the recommender.</p>
+<div id="tools-and-environments" class="section level1">
+<h1>Tools and environments</h1>
+<ul>
+<li>Python 2.7</li>
+<li>Jupyter Notebook</li>
+<li>Pandas</li>
+<li>NLTK</li>
+</ul>
+</div>
+<div id="dataset" class="section level1">
+<h1>Dataset</h1>
+<p>Dataset retrieved from Kaggle is <a href="https://www.kaggle.com/shivamb/netflix-shows">here</a> which contains information about tv show and movie from Netflix such as director, cast and description of the plot.</p>
+<p><img src="pw_images/recs/recdf.JPG" alt="EDA of dataset"></p>
+</div>
+<div id="exploratory-data-analysis-eda" class="section level1">
+<h1>Exploratory Data analysis EDA</h1>
+<p>Performed some EDA on the data. Found that there were a lot more movies than TV Show which makes sense given their history and origins.<br />
+<img src="pw_images/recs/receda.JPG" alt="EDA of dataset"></p>
+</div>
+<div id="preprocessing" class="section level1">
+<h1>Preprocessing</h1>
+<p>Pre-processing of the data include various techniques such as:</p>
+<ul>
+<li>punctation removal</li>
+<li>Stop word removal</li>
+<li>Lower casing of all words in the dataset</li>
+</ul>
+<p><img src="pw_images/recs/recpp.JPG" alt="preprocessing of the dataset"></p>
+</div>
+<div id="raking" class="section level1">
+<h1>Raking</h1>
+<p>Using the rake function from NLTK to extract key phrases from the plot description.</p>
+<p><img src="pw_images/recs/recrk.JPG" alt="raking the dataset"></p>
+</div>
+<div id="tf-idf-and-cosine-similarity" class="section level1">
+<h1>TF-IDF and cosine similarity</h1>
+<p>It is a statistic that reflect how important the word is to the document <span class="math inline">\([3]\)</span>. The cosine similarity which looked at how similar two words are and is one of the most common methods when looking at text data.</p>
+<p><img src="pw_images/recs/reccosim.JPG" alt="preprocessing of the dataset"></p>
+</div>
+<div id="recommender" class="section level1">
+<h1>Recommender</h1>
+<p>Here is some of the recommendation using some shows and movies that I have watched or am currently watching. As you can see there are recommendation are pretty similar in content but there are some unusual recommendations. But I have viewed some of the recommendation and am pleased to say that I was able to pick up some new shows and movies that I wouldn’t have otherwise found. So, the recommender can recommend shows and movies, but it is a bit of hit and miss with some recommendation it may be due to certain factors e.g. not too many similar shows/movie in the dataset so I would have to make more additions to more show that I enjoy. But it is useful and can be applied other industries.</p>
+<p><img src="pw_images/recs/recnar.JPG" alt="recommender of tv show 1"></p>
+<p><img src="pw_images/recs/recac.JPG" alt="recommender of tv show 2"></p>
+<p><img src="pw_images/recs/recmov1.JPG" alt="recommender of movie 1"></p>
+<p><img src="pw_images/recs/recmov2.JPG" alt="recommender of movie 2"></p>
+</div>
+<div id="possible-improvements-or-additions" class="section level1">
+<h1>Possible improvements or additions</h1>
+<ul>
+<li>Addition of more filtering option e.g. filter by country, duration of show/movie</li>
+<li>Increase the dataset by including other streaming service (Hulu, apple, Disney) data</li>
+<li>Calculating and displaying the probability that the user will like the recommended tv show and movies.</li>
+</ul>
+</div>
+<div id="references" class="section level1">
+<h1>References</h1>
+<p>[1] Ricci, F., Rokach, L. and Shapira, B., 2010. Introduction To Recommender Systems Handbook. [online] Springer Link. Available at: <a href="https://link.springer.com/chapter/10.1007/978-0-387-85820-3_1" class="uri">https://link.springer.com/chapter/10.1007/978-0-387-85820-3_1</a> [Accessed 2020].<br />
+[2] Breese, J., Heckerman, D. and Kadie, C., 1998. Empirical Analysis Of Predictive Algorithms For Collaborative Filtering | Proceedings Of The Fourteenth Conference On Uncertainty In Artificial Intelligence. [online] Dl.acm.org. Available at: <a href="https://dl.acm.org/doi/10.5555/2074094.2074100" class="uri">https://dl.acm.org/doi/10.5555/2074094.2074100</a> [Accessed 1 May 2020].<br />
+[3] Leskovec, J., Rajaraman, A., Labs, M. and Ullman, J.D. (2016). Mining of Massive Datasets. [online] Available at: <a href="http://infolab.stanford.edu/~ullman/mmds/book.pdf" class="uri">http://infolab.stanford.edu/~ullman/mmds/book.pdf</a> [Accessed 9 Jul. 2019].</p>
+</div>
+<div id="link-to-project" class="section level1">
+<h1>Link to project</h1>
+<p><a href='https://github.com/bryanm17078/NLP-Movie-Sentiment-Analysis/blob/master/NLP%20Movie%20Sentiment%20Analysis.ipynb'style="color:black;"><button class="btn default">Netflix TV Show/Movie Recommender</button></a><br />
+</font></p>
+<style>
+.footer {
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  color: black;
+  text-align: center;
+  padding: 15px;
+}
+</style>
+<div class="footer">
+<a href="contact.html" style="color:black;" class="fa fa-envelope fa-fw fa-2x"></a> <a href="https://github.com/bryanm17078" style="color:black;" class="fa fa-github fa-fw fa-2x"></a> <a href="https://www.linkedin.com/in/bryanmensah"style="color:black;" class="fa fa-linkedin fa-fw fa-2x"></a> <a href="D:/Bryan Mensah CV.pdf"style="color:black;" class="fa fa-file fa-fw fa-2x"></a>
+<p>
+Copyright © Bryan Mensah
+</p>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
