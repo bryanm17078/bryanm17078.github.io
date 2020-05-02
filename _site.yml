@@ -9,8 +9,10 @@ navbar:
       href: about.html
     - text: "Machine Learning"
       menu:
-        - text: "NLP"
+        - text: "Sentiment Analysis"
           href: nlp.html
+        - text: "Recommender"
+          href: recs.html
         - text: "Pokedex"
           href: pokedex.html
         - text: "Premier League"
