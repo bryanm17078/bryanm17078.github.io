@@ -370,7 +370,7 @@ $(document).ready(function () {
 </div>
 
 
-<p>This a personal project in which I create a recommender to recommend netflix tv shows and movies to watch based on the similarity to the movies and tv shows I have selected.<br />
+<p>This a personal project in which I create a recommender to recommend netflix tv shows and movies to watch based on the similarity to the movies and tv shows I selected.<br />
 <font size="3"><br />
 <img src="pw_images/recs/title.jpg" alt="netflix tv screen"></p>
 <p>Unfortunately, the world in currently in the midst of a global pandemic and here in the UK we are currently in a lockdown where we have to stay indoor and avoid going outside unless necessary. During this time, I decided to make a positive out of a negative and I have furthered my skills, but I have also relaxed a bit. One way I have done so is by watching tv shows and movies. But personally, I find it hard to find and start new tv shows and movies because there is so much to watch and I don’t want to spend all day searching for a new series or movie. So, with that in mind I decided to make the process easier with a recommender system.</p>
@@ -384,6 +384,7 @@ $(document).ready(function () {
 <li>Jupyter Notebook</li>
 <li>Pandas</li>
 <li>NLTK</li>
+ <li>Scikit-learn</li>
 </ul>
 </div>
 <div id="dataset" class="section level1">
@@ -393,7 +394,7 @@ $(document).ready(function () {
 </div>
 <div id="exploratory-data-analysis-eda" class="section level1">
 <h1>Exploratory Data analysis (EDA)</h1>
-<p>Performed some EDA on the data. Found that there were a lot more movies than tv show which makes sense given their history and origins.<br />
+<p>Performed some EDA on the data. Found that there were a lot more movies than tv shows which makes sense given their history and origins.<br />
 <img src="pw_images/recs/receda.JPG" alt="EDA of dataset"></p>
 </div>
 <div id="preprocessing" class="section level1">
@@ -402,7 +403,7 @@ $(document).ready(function () {
 <ul>
 <li>Punctation removal</li>
 <li>Stop word removal</li>
-<li>Lower casing of all words in the dataset</li>
+<li>Making all the words lowercase</li>
 </ul>
 <p><img src="pw_images/recs/recpp.JPG" alt="preprocessing of the dataset"></p>
 </div>
@@ -418,7 +419,7 @@ $(document).ready(function () {
 </div>
 <div id="recommender" class="section level1">
 <h1>Recommender</h1>
-<p>Here is some of the recommendation using some shows and movies that I have watched or am currently watching. As you can see there are recommendations are pretty similar in content but there are some unusual recommendations. But I have viewed some of the recommendations and am pleased to say that I was able to pick up some new shows and movies that I wouldn’t have otherwise found. So, the recommender can recommend tv shows and movies, but it is a bit of hit and miss with some recommendations it may be due to certain factors e.g. not too many similar shows/movie in the dataset or having similarities in unimportant features e.g same director but different genre and plot.so I would have to make more additions to get recommended more tv shows and movies that I might enjoy. But it is useful and can be applied other industries to make recommendation appropriate to that industry.</p>
+<p>Here are some of the recommendation made using some shows and movies that I have watched or am currently watching. As you can see there are recommendations are pretty similar in content but there are some unusual recommendations. But I have viewed some of the recommendations and am pleased to say that I was able to pick up some new shows and movies that I wouldn’t have otherwise found. So, the recommender can recommend tv shows and movies, but it is a bit of hit and miss with some recommendations it may be due to certain factors e.g. not too many similar shows/movie in the dataset or having similarities in unimportant features e.g same director but different genre and plot.so I would have to make more additions to get recommended more tv shows and movies that I might enjoy. But it is useful and can be applied other industries to make recommendation appropriate to that industry.</p>
 <p><img src="pw_images/recs/recnar.JPG" alt="recommender of tv show 1"></p>
 <p><img src="pw_images/recs/recac.JPG" alt="recommender of tv show 2"></p>
 <p><img src="pw_images/recs/recmov1.JPG" alt="recommender of movie 1"></p>
