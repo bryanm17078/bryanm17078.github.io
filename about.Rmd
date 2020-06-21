@@ -1,0 +1,36 @@
+---
+title: "About Me"
+---
+<center>
+<img src="pw_images/profile.JPG" align="middle" alt="profile image" width=150" height="150"> 
+</center>  
+ <font size="5"> 
+MSc Bioinformatics Graduate from Queen Mary University of London
+
+I am a avid gamer and enjoy watching and playing football. I also enjoy solving problems and learning new things. I try to learn new things (like how to build a website) and fill the gaps in my knowledge in data science, coding and things in general.
+My particular interests are in data analytics, data science and machine learning particularly deep learning.
+
+
+My CV is [here](Bryan Mensah_CV_v4.pdf) and also in the top right.
+</font>
+
+
+
+<style>
+.footer {
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  color: black;
+  text-align: center;
+  padding: 15px;
+}
+</style>
+
+<div class="footer">
+ <a href="contact.html" style="color:black;" class="fa fa-envelope fa-fw fa-2x"></a>
+ <a href="https://github.com/bryanm17078" style="color:black;" class="fa fa-github fa-fw fa-2x"></a>
+ <a href="https://www.linkedin.com/in/bryanmensah"style="color:black;" class="fa fa-linkedin fa-fw fa-2x"></a>
+ <a href="Bryan Mensah CV.pdf"style="color:black;" class="fa fa-file fa-fw fa-2x"></a>
+ <p>Copyright © Bryan Mensah</p>
+</div>

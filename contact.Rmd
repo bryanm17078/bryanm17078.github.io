@@ -1,0 +1,13 @@
+---
+title: "Contact Information"
+---
+<font size="3">
+If you would like to discuss anything reach out:
+
+My Email: bryanmensah@gmail.com  
+
+Phone Number: 07736581899
+
+My GitHub and LinkedIn links are in the top right.
+
+</font>
