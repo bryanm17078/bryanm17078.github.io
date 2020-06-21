@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Fifa 20 Data Analysis Application</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Bryan Mensah</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="about.html">About Me</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Machine Learning
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="nlp.html">Sentiment Analysis</a>
+    </li>
+    <li>
+      <a href="recs.html">Recommender</a>
+    </li>
+    <li>
+      <a href="pokedex.html">Pokedex</a>
+    </li>
+    <li>
+      <a href="premier.html">Premier League</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Data Analysis
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="rs.html">R statistics</a>
+    </li>
+    <li>
+      <a href="pa.html">QPA</a>
+    </li>
+    <li>
+      <a href="msc.html">Master Thesis</a>
+    </li>
+    <li>
+      <a href="datapp.html">Data Analysis App</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="contact.html">
+    <span class="fa fa-envelope fa-lg"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="https://github.com/bryanm17078">
+    <span class="fa fa-github fa-lg"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="https://www.linkedin.com/in/bryanmensah">
+    <span class="fa fa-linkedin fa-lg"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="D:/Bryan Mensah_CV_v4.pdf">
+    <span class="fa fa-file fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Fifa 20 Data Analysis Application</h1>
+
+</div>
+
+
+<p><font size="3"></p>
+<p><img src="pw_images/dataapp/dataapph.jpeg" alt="data analysis on tablet"></p>
+<p>This is a project in which I create a database backed flask application which provides analysis of a football team and provide reasonable transfer targets for the team and also analysis of players in the FIFA 20 game using a personally created database using a dataset from Kaggle and personally web scraping dataset from the sofifa website.</p>
+<p>FIFA 20 is a football video game and part of the long standing FIFA video game series. One feature of the game is a career mode where you can take control of a football team as a manager. With this you get a budget and you can shape the team in your image and attempt to improve your club and try win both domestic and continental trophies. One common issue with this mode is the scouting. For example, when playing as a league 1 side and your scout are recommending you buy a 50 million pound player when you have a budget of 1 million. This can be a bit frustrating as you either have to set up a network to get more realistic players in your price range or spend time searching the game database for players that you want and can afford. So, with that in mind I decided to create a flask app which would analysis a team and allow you to see and work out the strength and weakness of the selected team. In addition to the analysis also recommend player or players within the team price’s range which will help to improve the team. I have also added an additional feature which analyses specific player that the user want to look at provided they are in the database and compare them against some of the best players in similar position.</p>
+<div id="tools-and-environments" class="section level1">
+<h1>Tools and environments</h1>
+<ul>
+<li>Python 2</li>
+<li>MySQL</li>
+<li>Numpy</li>
+<li>Matplotlib</li>
+<li>BeautifulSoup</li>
+<li>Flask</li>
+<li>requests</li>
+<li>urllib2</li>
+<li>Re</li>
+<li>Sqlalchemy</li>
+<li>Plotly</li>
+<li>mysql.connector</li>
+<li>pymysql</li>
+<li>io</li>
+<li>json</li>
+<li>base64</li>
+</ul>
+</div>
+<div id="datasets" class="section level1">
+<h1>Datasets</h1>
+<p>There are two datasets used for the dataset (finalteamdata_fifa20,players_20). One based from a dataset in Kaggle <a href="https://www.kaggle.com/stefanoleone992/fifa-20-complete-player-dataset">here</a> which contain various details about the players which are important such as their in game rating, transfer values and their in game stats attributes. This dataset was chosen rather than extracting as the data was already present, so I felt no need to extract the data. In addition, this dataset was to act as base to allow for future implementation with updates in the FIFA 20 game and future FIFA games.<br />
+The second dataset was a personally created dataset which contain details about the football teams in the games such as the league they play for, budget and prestige. This dataset was selected primarily to help with the data analysis and also help with selecting transfer targets which will be explained in more detail later.</p>
+</div>
+<div id="pre-processing" class="section level1">
+<h1>Pre-processing</h1>
+<p>The players data For the players dataset I had to remove unnecessary values (e.g. skill moves, if the player has a real face and their body type) which did not provide much helpful information for data analysis.</p>
+<p><img src="pw_images/dataapp/playerds.JPG" alt="players dataset"></p>
+</div>
+<div id="team-dataset" class="section level1">
+<h1>Team Dataset</h1>
+<p>For the team dataset the website sofifa which is a reliable site for FIFA 20 game data was selected. Using beautiful soup to scrape information that would be important for players to know about the team e.g. the overall, team budget and prestige. After filtering unwanted values and cleaning up the dataset.The two dataset were ready to be uploaded to SQL.</p>
+<p><img src="pw_images/dataapp/teamds.JPG" alt="teams dataset"></p>
+</div>
+<div id="uploading-dataset-to-sql" class="section level1">
+<h1>Uploading dataset to SQL</h1>
+<p>The datasets were split into several different dataframe to make it easier for setting up the database and the data analysis later. Pandas is very versatile when manipulating data and it has many useful tools. One of those tools allow us to take a dataframe and insert it into a SQL database. So, using that the two dataset were inserted (after being split into tables) into my empty database fifa20 that I created in MySQL.</p>
+<p><img src="pw_images/dataapp/dftosql.JPG" alt="insert dataframe to sql"></p>
+<p><img src="pw_images/dataapp/sqlschema.JPG" alt="sql schema"></p>
+<p>In MySQL this schema shown above was created and primary and foreign key were assigned.Missing teams were inserted into the database and values were corrected for spelling. SQL queries were then run for the data analysis.</p>
+</div>
+<div id="data-analysis" class="section level1">
+<h1>Data analysis</h1>
+<div id="team-analysis" class="section level2">
+<h2>Team Analysis</h2>
+<p>For the team analysis the primary goal for most teams will be to do well in their own league e.g. depending on the team they will look to do more domestically and internationally. With that in mind the initial thought was to compare teams against team in the same league to see how they rank in their league. So initially general things like value of their players (more expensive = more quality possibly) were explored to see if there were any trends. The analysis was the split into 4 sections (goalkeepers, defenders, midfielders and attackers) for the selected team and comparing selected attributes relevant to the position for player in selected team among players in the same league and players in the same team.</p>
+<p><img src="pw_images/dataapp/teamanalysis.JPG" alt="teams analysis"></p>
+</div>
+<div id="transfer-recommendations" class="section level2">
+<h2>Transfer recommendations</h2>
+<p>The transfer recommendations were based on the premises:<br />
+• The players improve upon or match the level of the current options at the club<br />
+• The club cannot obviously buy players who cost more than their budget<br />
+• The players help to rebuild (young players) or add experience (older players) to the club<br />
+Also, if a player is a bigger club, they most likely wouldn’t move to club which is considered lower than their current club e.g. Harry Kane wouldn’t move to stoke. But how can we quantify this? In FIFA 20 there is a something called prestige which is a ‘measure ‘of a team reputation among teams in their own country (Domestic) and internationally (International). So, using this along the budget we can then recommend players that not only fit the budget but also are likely to join the club relatively easily. However, with this method it can limit certain players, but this ensure that you have a higher chance of getting the players and add a bit of realism to the scouting process. So, this is more suited for players who want to have a realistic career mode experience.</p>
+<p><img src="pw_images/dataapp/transfers.JPG" alt="transfer"></p>
+</div>
+</div>
+<div id="player-analysis" class="section level1">
+<h1>Player Analysis</h1>
+<p>For the player analysis the selected player is compared against the top players in their position (goalkeepers, defenders, midfielders, and attackers) looking at attributes relevant to their position. <img src="pw_images/dataapp/playeranalysis.JPG" alt="players"></p>
+</div>
+<div id="flask-and-sqlalchemly" class="section level1">
+<h1>Flask and sqlalchemly</h1>
+<p>Flask was used to create the site and to use data collected from queries from sqlalchemy and combine it with the data analysis and visualisation and present the results on a page.SQLalchelmy was used to communicate to the database and extract information via querying. The app was then deployed on pythonanywhere.<br />
+<img src="pw_images/dataapp/flaskcode.JPG" alt="flask code"></p>
+</div>
+<div id="the-app" class="section level1">
+<h1>The app</h1>
+<p>Here are some images of the app and some search results</p>
+<p><img src="pw_images/dataapp/homepage.JPG"> <img src="pw_images/dataapp/playerpage.JPG"> <img src="pw_images/dataapp/teampage.JPG"> <img src="pw_images/dataapp/tatransfer1.JPG"> <img src="pw_images/dataapp/tatransfer2.JPG"> <img src="pw_images/dataapp/tatransfer3.JPG"> <img src="pw_images/dataapp/tatransfer4.jpg"></p>
+<p><img src="pw_images/dataapp/taradar1.JPG"> <img src="pw_images/dataapp/taradar2.JPG"> <img src="pw_images/dataapp/taradar3.JPG"> <img src="pw_images/dataapp/taradar4.JPG"> <img src="pw_images/dataapp/tadataa1.JPG"> <img src="pw_images/dataapp/tadataa2.JPG"></p>
+<p><img src="pw_images/dataapp/tadataa3.JPG"> <img src="pw_images/dataapp/tadataa4.JPG"> <img src="pw_images/dataapp/dhenderson.JPG"> <img src="pw_images/dataapp/marquinhos.JPG"> <img src="pw_images/dataapp/goretzka.JPG"> <img src="pw_images/dataapp/werner.JPG"></p>
+<p>The app provide useful and detailed analysis but there is room for more additions. In the future I will try to add comparison between teams in different leagues. Possibly use a machine learning method to add a predictive value to calculate the likelihood the player would move to the selected club and use that as additional filtering method e.g. add players if their predictive value over 0.5- meaning they are likely to join the club .</p>
+</div>
+<div id="link-to-the-project-github" class="section level1">
+<h1>Link to the project github</h1>
+<p><a href='https://github.com/bryanm17078/Fifa20_DA_App'style="color:black;"><button class="btn default">Data Analysis App Github</button></a></p>
+<div id="link-to-the-app" class="section level2">
+<h2>Link to the app</h2>
+<p><a href='http://bryanm170.pythonanywhere.com/'style="color:black;"><button class="btn default">Data Analysis App</button></a></p>
+<p><font></p>
+<style>
+.footer {
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  color: black;
+  text-align: center;
+  padding: 15px;
+}
+</style>
+<div class="footer">
+<a href="contact.html" style="color:black;" class="fa fa-envelope fa-fw fa-2x"></a> <a href="https://github.com/bryanm17078" style="color:black;" class="fa fa-github fa-fw fa-2x"></a> <a href="https://www.linkedin.com/in/bryanmensah"style="color:black;" class="fa fa-linkedin fa-fw fa-2x"></a> <a href="D:/Bryan Mensah_CV_v4.pdf"style="color:black;" class="fa fa-file fa-fw fa-2x"></a>
+<p>
+Copyright © Bryan Mensah
+</p>
+</div>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
