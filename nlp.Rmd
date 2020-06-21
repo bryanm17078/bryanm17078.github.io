@@ -71,6 +71,6 @@ With this analysis we can obtain people feeling on a movie and use that in futur
  <a href="contact.html" style="color:black;" class="fa fa-envelope fa-fw fa-2x"></a>
  <a href="https://github.com/bryanm17078" style="color:black;" class="fa fa-github fa-fw fa-2x"></a>
  <a href="https://www.linkedin.com/in/bryanmensah"style="color:black;" class="fa fa-linkedin fa-fw fa-2x"></a>
- <a href="D:/Bryan Mensah CV.pdf"style="color:black;" class="fa fa-file fa-fw fa-2x"></a>
+ <a href="D:/Bryan Mensah_CV_v4.pdf"style="color:black;" class="fa fa-file fa-fw fa-2x"></a>
  <p>Copyright © Bryan Mensah</p>
 </div>
