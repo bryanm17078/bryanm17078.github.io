@@ -35,7 +35,7 @@ navbar:
     - icon: fa-linkedin fa-lg
       href: https://www.linkedin.com/in/bryanmensah
     - icon: fa-file fa-lg
-      href: D:/Bryan Mensah_CV_v4.pdf
+      href: Bryan Mensah_CV_v4.pdf
 output:
     html_document:
       theme: cosmo
