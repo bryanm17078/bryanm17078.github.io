@@ -2,11 +2,12 @@
 title: "Bryan Mensah"
 ---
 
-
+<center> 
 Hello I'm Bryan   
 
 <a href='about.html'style="color:black;"><button class="btn default">About Me</button></a>   
-
+</center> 
+  
 <br>
 
 # Skills  
@@ -22,33 +23,44 @@ Soft Skills: Problem solving, Adaptability, Critical thinking, Strong communicat
 <br>
 
 # Projects
-Here are some of the projects (academic and personal) that I have worked on. <br>  
-<img src="pw_images/dataapp/tadataa3.jpg" alt="data radar" width=250" height="250">  
+Here are some of the projects (academic and personal) that I have worked on. <br>
+<center>  
+<img src="pw_images/dataapp/tadataa3.JPG" alt="data radar"  width=970" height="90">
+</center>  
 </center>  
 Database based data analysis application using flask, SQL, and python  
-Application which uses a personally created database to provide detailed statistical analysis of teams and players and provide transfer recommendations using queries.   
-<a href='dataapp.html'style="color:black;"><button class="btn default">Data Analysis app</button></a> <br>  
+Application which uses a personally created database to provide detailed statistical analysis of teams and players and provide transfer recommendations using queries.  
+<center> 
+<a href='dataapp.html'style="color:black;"><button class="btn default">Data Analysis app</button></a> <br>
+</center> 
+<br>
 <center>
-<img src="pw_images/pokedex/pokeball.JPG" alt="Pokeball" width=250" height="250">
+<img src="pw_images/pokedex/pokeball.JPG" alt="Pokeball" width=970" height="90">
 </center>  
 Generation 1 Pokedex using keras, TensorFlow, beautifulsoup and python.  
 Created and trained a convolutional neural network to identify Pokémon based on a dataset from Kaggle and a web scraper to retrieve information about the identified Pokémon.  
+<center> 
 <a href='pokedex.html'style="color:black;"><button class="btn default">Pokedex</button></a> <br>  
-
+</center> 
+<br>
 <center>
-<img src="pw_images/premier/premstad.JPG" alt="Football Stadium" width=250" height="250">
+<img src="pw_images/premier/premstad.JPG" alt="Football Stadium" width=970" height="90">
 </center>  
 Predicting the premier league with a machine learning model
-Data analysis, manipulation and prediction using Python, Scikit-learn and NumPy to predict the final premier league table based on datasets from Kaggle and sport sites.    
+Data analysis, manipulation and prediction using Python, Scikit-learn and NumPy to predict the final premier league table based on datasets from Kaggle and sport sites. 
+
+<center> 
 <a href='premier.html'style="color:black;"><button class="btn default">Premier league</button></a> <br>   
-
-
+</center> 
+<br>
 <center>
-<img src="pw_images/pa/paimg2.JPG" alt="Codes on a computer screen" width=250" height="250"></a>  
+<img src="pw_images/pa/paimg2.JPG" alt="Codes on a computer screen"  width=970" height="90"></a>  
 </center>  
 Biological web application group project using flask, SQL and python.<br>
-Produced statistical summary of user submitted data using Python, Matplotlib and NumPy.   Part of a web application which provided information retrieved from database of human kinase, phosphosites and their inhibitors using SQL.<br>  
+Produced statistical summary of user submitted data using Python, Matplotlib and NumPy.   Part of a web application which provided information retrieved from database of human kinase, phosphosites and their inhibitors using SQL.<br> 
+<center> 
 <a href='pa.html'style="color:black;"><button class="btn default">QPA</button></a>
+</center> 
 
 <style>
 .footer {
@@ -65,6 +77,6 @@ Produced statistical summary of user submitted data using Python, Matplotlib and
  <a href="contact.html" style="color:black;" class="fa fa-envelope fa-fw fa-2x"></a>
  <a href="https://github.com/bryanm17078" style="color:black;" class="fa fa-github fa-fw fa-2x"></a>
  <a href="https://www.linkedin.com/in/bryanmensah"style="color:black;" class="fa fa-linkedin fa-fw fa-2x"></a>
- <a href="D:/Bryan Mensah_CV_v4.pdf"style="color:black;" class="fa fa-file fa-fw fa-2x"></a>
+ <a href="Bryan Mensah_CV_v4.pdf"style="color:black;" class="fa fa-file fa-fw fa-2x"></a>
  <p>Copyright © Bryan Mensah</p>
 </div>
